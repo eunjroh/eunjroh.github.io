@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="java2.js"></script>
+    <style>
+        span {
+            color: rgb(240, 70, 70);
+            font-size: smaller;
+            text-decoration: underline;
+        }
+        h1 {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html">
+        <img id="img" src="./img/logo.png" width="80" height="50" alt="로고">
+    </a>
+    <div class="login-container">
+        <h1>로그인</h1>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">아이디 (이메일)</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <span>아이디는 가천대학교 이메일을 작성해주세요.</span>
+            <hr>
+            <button type="submit">로그인</button>
+        </form>
+        <div id="error-message" class="error-message"></div>
+    </div>
+</body>
+</html>

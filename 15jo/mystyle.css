@@ -1,0 +1,24 @@
+
+*{
+    background-color:rgb(255, 255, 255)
+}
+
+body {
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+#search {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+span{
+    font-size:39px;
+    font-style:initial;
+    font-weight: 700;
+    color:rgb(28, 28, 170);
+    float:left;
+}
+#img{
+    width: 225px;
+    height:190px;
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roulette</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f4f8;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        #roulette-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+        #roulette {
+            width: 100%;
+            height: 100%;
+            border: 10px solid #333;
+            border-radius: 50%;
+            position: absolute;
+            transition: transform 2s ease-out; /* 2s로 변경 */
+        }
+        #pointer {
+            width: 0; 
+            height: 0; 
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 30px solid red; /* 위쪽 방향으로 뒤집음 */
+            position: absolute;
+            top: -30px; 
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #spinButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        #spinButton:active {
+            background-color: #0056b3;
+        }
+        a {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        #img {
+            width: 100px;
+            height: 70px;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html">
+        <img id="img" src="./img/logo.png" alt="로고">
+    </a>
+    <div id="roulette-container">
+        <div id="pointer"></div>
+        <canvas id="roulette" width="300" height="300"></canvas>
+    </div>
+    <br><br>
+    <button id="spinButton" onclick="spinRoulette()">Spin</button>
+
+    <script>
+        const canvas = document.getElementById('roulette');
+        const ctx = canvas.getContext('2d');
+        const sections = ['<10%할인>', '<30%할인>', '<50%할인>', '<책 증정>'];
+        const colors = ['#3498db', '#e74c3c', '#f1c40f', '#2ecc71'];
+
+        function drawRoulette() {
+            const arc = Math.PI / (sections.length / 2);
+            for (let i = 0; i < sections.length; i++) {
+                ctx.beginPath();
+                ctx.fillStyle = colors[i];
+                ctx.moveTo(canvas.width / 2, canvas.height / 2);
+                ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, i * arc, (i + 1) * arc);
+                ctx.lineTo(canvas.width / 2, canvas.height / 2);
+                ctx.fill();
+                ctx.save();
+
+                ctx.translate(canvas.width / 2, canvas.height / 2);
+                ctx.rotate(arc * (i + 0.5));
+                ctx.textAlign = 'right';
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 14px sans-serif';
+                ctx.fillText(sections[i], canvas.width / 2 - 10, 10);
+                ctx.restore();
+            }
+        }
+        function spinRoulette() {
+            const rotation = Math.floor(Math.random() * 360) + 3600;
+            canvas.style.transform = `rotate(${rotation}deg)`;
+        }
+
+        drawRoulette();
+    </script>
+</body>
+</html>
